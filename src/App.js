@@ -6,11 +6,11 @@ const Form = () => {
   const [text, setText] = useState(window.localStorage.getItem("text") || "");
   console.log(text);
 
-  //with deps, this should only get called when the deps update
+  //dep array but nothing to check - so only gets called one time, and never updates again
   useEffect(() => {
     console.log("this gets called only when deps change");
     window.localStorage.setItem("text", text);
-  }, [text]);
+  }, []);
 
   const handleFormChange = (e) => {
     setText(e.target.value);
