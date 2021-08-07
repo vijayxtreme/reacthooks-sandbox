@@ -5,12 +5,12 @@ const Form = () => {
   console.log("start me up");
   const [text, setText] = useState(window.localStorage.getItem("text") || "");
   console.log(text);
-  //without a dependency list, this will get called again every time the state of the app changes
-  //we don't want that because we only want this to run when the state for this component
-  //changes
+
+  //with deps, this should only get called when the deps update
   useEffect(() => {
+    console.log("this gets called only when deps change");
     window.localStorage.setItem("text", text);
-  });
+  }, [text]);
 
   const handleFormChange = (e) => {
     setText(e.target.value);
